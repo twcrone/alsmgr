@@ -40,12 +40,18 @@ command = ARGV[1]?
 
 if new_name
   if command == "-d"
+    puts "Deleting alias [#{new_name}]"
     hash.delete new_name
   else
+    puts "Adding alias [#{new_name}]"
     current_dir = Dir.current
+    puts "Path of [#{current_dir}]"
     hash[new_name] = "'#{current_dir}'"
   end
   update_aliases(hash, alias_file_location)
 end
 
+puts "---------------"
+puts "Current aliases"
+puts "---------------"
 puts get_print_output_for(hash)
