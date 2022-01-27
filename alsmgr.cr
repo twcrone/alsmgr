@@ -1,4 +1,4 @@
-alias_file_location = Path.home.to_s + "/.alias"
+alias_file_location = Path["~/.alias"].expand(home: true)
 hash = Hash(String, String).new
 File.each_line(alias_file_location) do |line|
   values = line.split("=")
@@ -8,6 +8,21 @@ File.each_line(alias_file_location) do |line|
   hash[name] = path
 end
 
+new_name = ARGV[0]?
+
+if new_name
+  current_dir = Dir.current
+  hash[new_name] = "'#{current_dir}'"
+end
+
+aliases = Array(String).new
+
 hash.each do |name, path|
-  puts name + "=" + path
+  aliases << name + "=" + path
+end
+
+aliases.sort!
+
+aliases.each do |s|
+  puts s
 end
