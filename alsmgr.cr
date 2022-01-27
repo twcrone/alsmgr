@@ -26,6 +26,13 @@ def get_alias_output_for(aliases : Hash(String, String))
   output = a.sort!.join("\n")
 end
 
+def update_aliases(hash, alias_file_location)
+  if !File.empty?(alias_file_location)
+    File.copy(alias_file_location, "#{alias_file_location}.bak")
+  end
+  File.write(alias_file_location, get_alias_output_for(hash))
+end
+
 alias_file_location = Path["~/.alias"].expand(home: true)
 hash = load_aliases_from(alias_file_location)
 new_name = ARGV[0]?
@@ -33,10 +40,7 @@ new_name = ARGV[0]?
 if new_name
   current_dir = Dir.current
   hash[new_name] = "'#{current_dir}'"
-  if !File.empty?(alias_file_location)
-    File.copy(alias_file_location, "#{alias_file_location}.bak")
-  end
-  File.write(alias_file_location, get_alias_output_for(hash))
+  update_aliases(hash, alias_file_location)
 end
 
 puts get_print_output_for(hash)
