@@ -23,7 +23,7 @@ will result in `alias bob='/Users/bob/work'` being added to `.alias`
 file in $HOME directory that can be sourced with ZSH for directory
 aliases.
 
-### Delete and alias
+### Delete an alias
 
 `alsmgr <alias-name> -d`
 
