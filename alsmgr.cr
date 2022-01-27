@@ -1,5 +1,8 @@
 def load_aliases_from(alias_file_location) : Hash(String, String)
   hash = Hash(String, String).new
+  if !File.exists?(alias_file_location)
+    return hash
+  end
   File.each_line(alias_file_location) do |line|
     values = line.split("=")
     first = values[0]
@@ -27,7 +30,7 @@ def get_alias_output_for(aliases : Hash(String, String))
 end
 
 def update_aliases(hash, alias_file_location)
-  if !File.empty?(alias_file_location)
+  if File.exists?(alias_file_location) && !File.empty?(alias_file_location)
     File.copy(alias_file_location, "#{alias_file_location}.bak")
   end
   File.write(alias_file_location, get_alias_output_for(hash))
