@@ -33,23 +33,10 @@ new_name = ARGV[0]?
 if new_name
   current_dir = Dir.current
   hash[new_name] = "'#{current_dir}'"
-end
-
-aliases = Array(String).new
-
-hash.each do |name, path|
-  aliases << name + "=" + path
-end
-
-aliases.sort!
-
-if !File.empty?(alias_file_location)
-  File.copy(alias_file_location, "#{alias_file_location}.bak")
-end
-new_file_content = ""
-
-aliases.each do |s|
-  new_file_content += "alias #{s}\n"
+  if !File.empty?(alias_file_location)
+    File.copy(alias_file_location, "#{alias_file_location}.bak")
+  end
+  File.write(alias_file_location, get_alias_output_for(hash))
 end
 
 puts get_print_output_for(hash)
