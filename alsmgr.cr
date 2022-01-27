@@ -36,10 +36,15 @@ end
 alias_file_location = Path["~/.alias"].expand(home: true)
 hash = load_aliases_from(alias_file_location)
 new_name = ARGV[0]?
+command = ARGV[1]?
 
 if new_name
-  current_dir = Dir.current
-  hash[new_name] = "'#{current_dir}'"
+  if command == "-d"
+    hash.delete new_name
+  else
+    current_dir = Dir.current
+    hash[new_name] = "'#{current_dir}'"
+  end
   update_aliases(hash, alias_file_location)
 end
 
