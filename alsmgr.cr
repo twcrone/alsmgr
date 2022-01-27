@@ -23,6 +23,13 @@ end
 
 aliases.sort!
 
-aliases.each do |s|
-  puts s
+if !File.empty?(alias_file_location)
+  File.copy(alias_file_location, "#{alias_file_location}.bak")
 end
+new_file_content = ""
+
+aliases.each do |s|
+  new_file_content += "alias #{s}\n"
+end
+
+puts new_file_content
