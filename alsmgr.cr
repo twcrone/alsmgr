@@ -10,10 +10,18 @@ def load_aliases_from(alias_file_location) : Hash(String, String)
   hash
 end
 
-def get_output_for(aliases : Hash(String, String))
+def get_print_output_for(aliases : Hash(String, String))
   a = Array(String).new
   aliases.each do |name, path|
-    a << name + "=" + path
+    a << "#{name}=#{path}"
+  end
+  output = a.sort!.join("\n")
+end
+
+def get_alias_output_for(aliases : Hash(String, String))
+  a = Array(String).new
+  aliases.each do |name, path|
+    a << "alias #{name}=#{path}"
   end
   output = a.sort!.join("\n")
 end
@@ -44,4 +52,4 @@ aliases.each do |s|
   new_file_content += "alias #{s}\n"
 end
 
-puts get_output_for(hash)
+puts get_print_output_for(hash)
