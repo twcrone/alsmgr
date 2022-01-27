@@ -44,4 +44,4 @@ aliases.each do |s|
   new_file_content += "alias #{s}\n"
 end
 
-print_aliases hash
+puts get_output_for(hash)
