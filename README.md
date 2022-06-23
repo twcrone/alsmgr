@@ -9,6 +9,11 @@ The `install.sh` should complete all the necessary steps to install it on Mac/Li
 However, doing it yourself might be preferable.
 
 
+### Install Crystal
+
+`brew install crystal`
+
+
 ### Build
 
 `crystal build alsmgr.cr --release`
