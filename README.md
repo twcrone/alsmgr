@@ -32,7 +32,7 @@ I prefer to rename it `am` for more succinct usage.
 
 `am <alias-name>`
 
-e.g. `alsmgr bob` when present working directory is `/Users/bob/work`
+e.g. `am bob` when present working directory is `/Users/bob/work`
 will result in `alias bob='/Users/bob/work'` being added to `.alias`
 file in $HOME directory that can be sourced with ZSH for directory
 aliases.
