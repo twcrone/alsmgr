@@ -36,11 +36,14 @@ alias_file_location = Path["~/.alias"].expand(home: true)
 hash = load_aliases_from(alias_file_location)
 new_name = ARGV[0]?
 command = ARGV[1]?
+path = ""
 
 if new_name
   if command == "-d"
     puts "Deleting alias [#{new_name}]"
     hash.delete new_name
+  elsif command == "-c"
+    path = hash[new_name]
   else
     puts "Adding alias [#{new_name}]"
     current_dir = Dir.current
@@ -54,3 +57,7 @@ puts "---------------"
 puts "Current aliases"
 puts "---------------"
 puts get_output_for(hash)
+if path != ""
+  puts "---------------"
+  puts "Path for [#{new_name}] is [#{path}]"
+end
