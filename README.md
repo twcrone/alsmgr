@@ -43,6 +43,11 @@ aliases.
 `am <alias-name> -d`
 
 
+### Copy an alias path (currently just prints out to console)
+
+`am <alias-name> -c`
+
+
 ### Backup
 
 With any `add` or `delete` the current `.alias` before changes will be copied to `.alias.bak`
